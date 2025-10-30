@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jessy Vieiras | Fotografia e Videografia</title>
+
+    <meta name="description" content="Portfólio de Jessy Vieiras. Fotógrafa e videomaker profissional, especializada em ensaios, cobertura de eventos (balé, corridas) e vídeos publicitários.">
+    <meta name="keywords" content="fotógrafa, videomaker, portfólio, ensaios, cobertura de eventos, jessy vieiras, angra dos reis, volta redonda">
+
+    <style>
+        /* --- IMPORTAÇÃO DE FONTES --- */
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Quattrocento:wght@400;700&display=swap');
+
+        /* --- CONFIGURAÇÕES GLOBAIS E VARIÁVEIS (TEMA CLEAN/CAQUI) --- */
+        :root {
+            --color-background: #F7F3E8; /* Fundo caqui/bege claro */
+            --color-card-bg: #FFFFFF;    /* Cards brancos para um look clean */
+            --color-text-body: #444444;  /* Texto do corpo escuro (cinza) */
+            --color-text-title: #123332; /* Títulos no verde-escuro original (fica elegante) */
+            --color-accent: #EF9C82;   /* O pêssego de destaque */
+
+            --font-title: 'Quattrocento', serif;
+            --font-body: 'Montserrat', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--color-background);
+            font-family: var(--font-body);
+            color: var(--color-text-body);
+            overflow-x: hidden;
+        }
+        
+        main {
+            padding-top: 70px; /* Espaço para o header fixo */
+        }
+
+        /* --- HEADER E NAVEGAÇÃO --- */
+        .header {
+            background-color: rgba(247, 243, 232, 0.9); /* Fundo caqui com transparência */
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 0 20px;
+            height: 70px;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: top 0.3s;
+            border-bottom: 1px solid rgba(0,0,0,0.05); /* Linha sutil */
+        }
+        .nav-container {
+            width: 100%;
+            max-width: 1200px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-family: var(--font-title);
+            color: var(--color-text-title);
+            font-size: 1.5rem;
+            text-decoration: none;
+        }
+        .nav-menu {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+        .nav-menu a {
+            color: var(--color-text-body);
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 700;
+            position: relative;
+            padding: 5px 0;
+        }
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--color-accent);
+            transition: width 0.3s ease;
+        }
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        /* Menu Mobile */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            flex-direction: column;
+            gap: 5px;
+        }
+        .hamburger .bar {
+            width: 25px;
+            height: 3px;
+            background-color: var(--color-text-title);
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        /* --- COMPONENTES REUTILIZÁVEIS --- */
+        .section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+        .section-title {
+            font-family: var(--font-title);
+            color: var(--color-text-title);
+            font-size: 2.8rem;
+            font-weight: 400;
+            line-height: 1.2;
+            margin-bottom: 40px;
+        }
+        .grid-two-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        .decorative-circle {
+            position: absolute;
+            border: 2px solid rgba(0, 0, 0, 0.1);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        
+        /* --- ANIMAÇÃO DE SCROLL --- */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- SEÇÃO HERO --- */
+        .hero-section {
+            min-height: calc(100vh - 70px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 40px 20px;
+            position: relative;
+            background-size: cover;
+            background-position: center;
+            /* IMAGEM 1: PALCO */
+            background-image: url('espetáculo1.jpg');
+        }
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+        }
+        .hero-title {
+            font-family: var(--font-title);
+            color: #FFD9BE; 
+            font-size: 3.5rem;
+            font-weight: 400;
+            line-height: 1.2;
+        }
+        .hero-subtitle {
+            font-size: 1.1rem;
+            margin-top: 20px;
+            color: #F9EEE7; 
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .hero-button {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 12px 35px;
+            background-color: var(--color-accent);
+            color: #000;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: transform 0.2s ease, background-color 0.2s ease;
+        }
+        .hero-button:hover {
+            transform: scale(1.05);
+            background-color: #f7b29d;
+        }
+        
+        /* --- SEÇÃO SOBRE --- */
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+        }
+        .about-text-container { flex: 1.5; }
+        .about-image-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        .about-image-container .profile-pic {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            object-fit: cover;
+            z-index: 2;
+        }
+        .about-image-container .circle1 {
+            width: 280px;
+            height: 280px;
+            border: 2px solid rgba(0, 0, 0, 0.1);
+            position: absolute;
+            z-index: 1;
+        }
+        .about-block { margin-top: 30px; }
+        .about-block h3 {
+            font-family: var(--font-title);
+            color: var(--color-text-title);
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 10px;
+        }
+        .about-block p, .about-block ul {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: var(--color-text-body);
+        }
+        .about-block ul { list-style-type: none; }
+
+        /* --- SEÇÃO SERVIÇOS --- */
+        .advantages-section .card {
+            background-color: var(--color-card-bg);
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        .advantages-section .card h3 {
+            color: var(--color-text-title);
+            font-size: 1.4rem;
+            font-weight: 400;
+            font-family: var(--font-body);
+            margin-bottom: 10px;
+        }
+        .advantages-section .card p { 
+            line-height: 1.6;
+            color: var(--color-text-body);
+        }
+        .advantages-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        /* --- SEÇÃO PORTFÓLIO --- */
+        .finance-item p { 
+            line-height: 1.6; 
+            color: var(--color-text-body);
+        }
+        .finance-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+        
+        /* --- SEÇÃO PROJETOS --- */
+        .expertise-section { text-align: center; }
+        .expertise-item {
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+        .expertise-section .circle-top-left {
+            top: 20px;
+            left: 20px;
+            width: 150px;
+            height: 150px;
+            border-right: none;
+            border-bottom: none;
+            transform: rotate(45deg);
+        }
+        .expertise-section .circle-bottom-right {
+            bottom: 20px;
+            right: 20px;
+            width: 200px;
+            height: 200px;
+            border-left: none;
+            border-top: none;
+            transform: rotate(45deg);
+        }
+        .expertise-section p {
+            color: var(--color-text-body);
+        }
+
+
+        /* --- SEÇÃO CONTATO --- */
+        .contact-section-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: flex-start;
+        }
+        .contact-info p {
+            font-size: 1.2rem;
+            color: var(--color-text-body);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        .whatsapp-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            color: var(--color-text-title);
+            text-decoration: none;
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-top: 15px;
+            transition: color 0.3s;
+        }
+        .whatsapp-link:hover { color: var(--color-accent); }
+        .whatsapp-link img { width: 40px; height: 40px; }
+
+        /* Formulário de Contato */
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .contact-form-inputs input,
+        .contact-form-inputs textarea {
+            width: 100%;
+            padding: 12px;
+            border-radius: 5px;
+            border: 2px solid #ddd;
+            background-color: var(--color-card-bg);
+            color: var(--color-text-body);
+            font-family: var(--font-body);
+            font-size: 1rem;
+        }
+        .contact-form-inputs input:focus,
+        .contact-form-inputs textarea:focus {
+            outline: none;
+            border-color: var(--color-accent);
+        }
+        .contact-form-inputs textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        .submit-button {
+            display: block;
+            width: 100%;
+            text-align: center;
+            padding: 12px 35px;
+            background-color: var(--color-accent);
+            color: #000;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            font-size: 1rem;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.2s ease, background-color 0.2s ease;
+        }
+        .submit-button:hover {
+            transform: scale(1.02);
+            background-color: #f7b29d;
+        }
+
+        /* --- RODAPÉ --- */
+        .footer {
+            background-color: #EBE5D9; /* Caqui um pouco mais escuro */
+            padding: 30px 20px;
+            text-align: center;
+        }
+        .footer p {
+            color: rgba(68, 68, 68, 0.7);
+            font-size: 0.9rem;
+        }
+        .footer p a {
+            color: var(--color-text-title);
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .footer p a:hover {
+            text-decoration: underline;
+        }
+
+
+        /* --- BOTÃO VOLTAR AO TOPO --- */
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--color-accent);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: all 0.4s ease;
+        }
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .back-to-top svg {
+            width: 24px;
+            height: 24px;
+            stroke: #000;
+        }
+
+        /* --- RESPONSIVIDADE --- */
+        @media (max-width: 992px) {
+            .section-title { font-size: 2.5rem; }
+            .hero-title { font-size: 3rem; }
+            .grid-two-columns, .contact-section-content { grid-template-columns: 1fr; }
+            .advantages-image, .finance-image { max-height: 400px; margin-top: 40px; }
+        }
+
+        @media (max-width: 768px) {
+            main { padding-top: 60px; }
+            .header { height: 60px; }
+            .nav-menu {
+                position: fixed;
+                top: 60px;
+                right: -100%;
+                width: 70%;
+                height: calc(100vh - 60px);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                background-color: var(--color-background);
+                border-left: 1px solid rgba(0,0,0,0.05);
+                transition: right 0.4s ease-in-out;
+            }
+            .nav-menu.active { right: 0; }
+            .hamburger { display: flex; }
+            .hamburger.active .bar:nth-child(2) { opacity: 0; }
+            .hamburger.active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+            .hamburger.active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+            .section { padding: 60px 20px; }
+            .section-title { font-size: 2.2rem; }
+            .hero-title { font-size: 2.5rem; }
+            .hero-subtitle { font-size: 1rem; }
+            
+            .about-content { flex-direction: column-reverse; }
+            .expertise-list { grid-template-columns: 1fr; gap: 30px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="nav-container">
+            <a href="#home" class="logo">Jessy Vieiras</a>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="#sobre">Sobre</a></li>
+                    <li><a href="#servicos">Serviços</a></li>
+                    <li><a href="#portfolio">Portfólio</a></li>
+                    <li><a href="#projetos">Projetos</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                </ul>
+            </nav>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero-section" id="home">
+            <div class="hero-content animate-on-scroll">
+                <h1 class="hero-title">De Lentes e Emoções: Fotografia e Vídeo Profissional</h1>
+                <p class="hero-subtitle">Especialista em registrar a essência de momentos, eventos e marcas com sensibilidade e técnica.</p>
+                <a href="#contato" class="hero-button">Solicite um Orçamento</a>
+            </div>
+        </section>
+
+        <section class="section about-section" id="sobre">
+            <div class="about-content">
+                <div class="about-text-container animate-on-scroll">
+                    <h2 class="section-title">Sobre Mim - Jessy Vieiras</h2>
+                    <div class="about-block">
+                        <h3>Fotógrafa e Videomaker</h3>
+                        <p>Com um olhar sensível e técnico, meu objetivo é capturar a essência de cada momento. Sou apaixonada por contar histórias, seja através de um clique ou de uma cena em movimento.</p>
+                    </div>
+                    <div class="about-block">
+                        <h3>Minha Abordagem</h3>
+                        <p>Acredito em uma direção leve e natural, criando uma atmosfera confortável onde você pode ser você mesmo. O resultado são memórias autênticas e atemporais.</p>
+                    </div>
+                </div>
+                <div class="about-image-container animate-on-scroll">
+                    <img src="jessyperfil.png" alt="Foto de perfil de Jessy Vieiras sorrindo" class="profile-pic">
+                    <div class="decorative-circle circle1"></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section advantages-section" id="servicos">
+            <div class="grid-two-columns">
+                <div class="animate-on-scroll">
+                    <h2 class="section-title">Serviços Oferecidos</h2>
+                    <div class="card">
+                        <h3>Fotografia Profissional</h3>
+                        <p>Ensaios pessoais, de família, gestantes, newborn e cobertura de eventos sociais.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Videografia e Cobertura</h3>
+                        <p>Cobertura de eventos artísticos e esportivos (balé, corridas) com foco na emoção e dinamismo.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Vídeos Publicitários</h3>
+                        <p>Produção de vídeos institucionais e para mídias sociais (Ex: academias e marcas).</p>
+                    </div>
+                </div>
+                <div class="animate-on-scroll">
+                    <img src="jessyperfil2.jpg" alt="Foto de Jessy Vieiras em close-up" class="advantages-image">
+                </div>
+            </div>
+        </section>
+
+        <section class="section finance-section" id="portfolio">
+            <div class="grid-two-columns">
+                <div class="animate-on-scroll">
+                    <h2 class="section-title">Um Pouco do Meu Olhar</h2>
+                    <p style="font-size: 1.1rem; line-height: 1.6;">Cada projeto é uma nova história. Meu portfólio é construído com luz, sombra e momentos reais. Veja um pouco do meu trabalho e da minha paixão pela arte e pela vida.</p>
+                </div>
+                <div class="animate-on-scroll">
+                    <img src="piano.jpg" alt="Foto de um pianista tocando em um palco" class="finance-image">
+                </div>
+            </div>
+        </section>
+
+        <section class="section expertise-section" id="projetos">
+            <div class="decorative-circle circle-top-left"></div>
+            <div class="decorative-circle circle-bottom-right"></div>
+            
+            <div class="animate-on-scroll">
+                <h2 class="section-title">Projetos Pessoais</h2>
+                <img src="memesud.jpg" alt="Perfil do Instagram Memes Sud Brasil" style="max-width: 400px; width: 100%; border-radius: 8px; margin: 0 auto 20px auto; display: block; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+                
+                <p style="font-size: 1.1rem; max-width: 600px; margin-left: auto; margin-right: auto; line-height: 1.6;">
+                    "Página de memes criada por mim, dedicada ao humor da Igreja de Jesus Cristo Dos Santos Dos Últimos Dias. Um projeto paralelo onde misturo criatividade e fé."
+                </p>
+                
+                <a href="https://www.instagram.com/portifolio.jessyv" target="_blank" class="hero-button" style="margin-top: 30px; background: transparent; border: 2px solid var(--color-accent); color: var(--color-accent);">
+                    Ver meu Instagram Pessoal
+                </a>
+            </div>
+        </section>
+
+        <section class="section" id="contato">
+            <div class="contact-section-content">
+                <div class="contact-info animate-on-scroll">
+                    <h2 class="section-title">Entre em contato</h2>
+                    <p>Gostou do que viu? Vamos agendar seu ensaio ou cobertura? Fale comigo diretamente pelo WhatsApp ou envie uma mensagem.</p>
+                    <a href="https://wa.me/5524999566381" target="_blank" class="whatsapp-link">
+                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAAAXNSR0IArs4c6QAAA7NJREFUeF7tmu112zAMhOOF+wBdB3SCdpJ2g3YS9Qa9bjYn1BuEG9QbdBOgnQCdIN2gfc/lIAcaKQuG4P/FA4STh7wlp9jAYBEE3Y4+kK+LFz6f/0f4zR8u2/aLBCwB2wK84uAXYBdg291+S/wA8Bvg4eEhec/V7gL8A3D5+fk8KGP0DUDgOcaI7wDcAMy5nB3Am+eY4+O+DPAVwI8AVwG0CjK2HwJMAHwB8LdcYAYM2fUfAnwEcGvO5y+BfQG0H1jN3zN9+b+w5l2sBwD03rQAAK1l9b02/wIA2k3N31+B2wdAYOQ9w50Bdn4Q2N/m2xsw/3kX4O8AvwD8C/B/vDkL8P3/32AcD/ADwG3Y2AFgZ/O+H/AewP0+3/9n2B8B/iXkCgD2gS0M8APAjyvGtwC/AXgS4n4b4DsAV7W7z/ddAD/pA/g/hL2c/79C2N+FmX+uG+b2HwI8B/DX/J+tAEt/A3ABoHnJjwDOA/xei2qHwG0f4C+APwA4yBdg21+An+b3E2AnYJ8AMQYADbAVQJECgKj/j8D+AMgVBG+B0k23AWDpYwS2A2gU4EwAGg0wVwa1h8DXAPfvwG8AWQWwHwI8BfD/XwC+w6T+HwA/AfzXBBTwA8A/AUzN0X4YMAW4GUCjAD8B+Lco/T/ADwA/AXwD8K0+ALgRIL0B0ANg/wYwx+d+n/9E+CcAn+f9fwR4AeD/U5vSfwgQAWAAkMIA+y0D/J+i/O8l/A/wb13/f7YJ9v8lQCmADgDOBJD+D+D/x/yfTfD/R+B/w//fBPj/FOCoAGgU4EwAGg2wVwZ1T4GvAe7fgd8Asgp4/yPAUQD/fwPwvS/i/wPwj4X6fwD8p139PwD+pBv/D4B/K8T/A+B/a+H/A+A/q+b/A+Bf6/T/APg34f8PQP8A/Bth/QNA/wD8b2T1D0D/APz7+f0PQP8A/DfL/AegfwD+u0/+D0D/APz3vP4PQP8A/P+4/z8A/wMAAAAAAAAAAAAAAAAAAAAAAACAPw+A3wE8/g+Bdwp0/AfAjwf4P4A3C+B7+D+A3wcAnwA8/g+B44Yd/wHwcQD/B/iZAj6D/z/AfAD+D/DBAFsA/8/w43gA//cW+BcA//eG/wXwP3D8D0H/4Pf5n74AAAAASUVORK5CYII=" alt="Ícone do WhatsApp">
+                        <span>Whatsapp - +55 24 99956-6381</span>
+                    </a>
+                </div>
+                
+                <div class="contact-form-inputs animate-on-scroll">
+                    <div class="form-group">
+                        <input type="text" id="form-name" name="name" placeholder="Seu nome" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="form-email" name="email" placeholder="Seu e-mail" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="form-servico" name="servico" placeholder="Qual serviço você procura? (Ensaio, Vídeo, etc)" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="form-message" name="message" placeholder="Sua mensagem" required></textarea>
+                    </div>
+                    <a href="#" id="send-whatsapp-btn" class="submit-button">Enviar Mensagem via WhatsApp</a>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; <span id="current-year"></span> Jessy Vieiras | Fotografia e Videografia. Todos os direitos reservados.</p>
+        
+        <p style="margin-top: 10px;"><a href="https://www.instagram.com/portifolio.jessyv" target="_blank">Siga-me no Instagram: @portifolio.jessyv</a></p>
+    </footer>
+
+    <a href="#home" class="back-to-top">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5"/><path d="m5 12 7-7 7 7"/></svg>
+    </a>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+            // --- LÓGICA DO MENU MOBILE (HAMBURGER) ---
+            const hamburger = document.querySelector('.hamburger');
+            const navMenu = document.querySelector('.nav-menu');
+            const navLinks = document.querySelectorAll('.nav-menu a');
+
+            hamburger.addEventListener('click', () => {
+                hamburger.classList.toggle('active');
+                navMenu.classList.toggle('active');
+            });
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    hamburger.classList.remove('active');
+                    navMenu.classList.remove('active');
+                });
+            });
+
+            // --- LÓGICA DAS ANIMAÇÕES DE SCROLL ---
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            const elementsToAnimate = document.querySelectorAll('.animate-on-scroll');
+            elementsToAnimate.forEach(el => observer.observe(el));
+
+            // --- LÓGICA DO BOTÃO "VOLTAR AO TOPO" ---
+            const backToTopButton = document.querySelector('.back-to-top');
+
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) {
+                    backToTopButton.classList.add('visible');
+                } else {
+                    backToTopButton.classList.remove('visible');
+                }
+            });
+            
+            // --- ATUALIZAÇÃO AUTOMÁTICA DO ANO NO RODAPÉ ---
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+
+            // --- LÓGICA CORRIGIDA PARA O FORMULÁRIO DO WHATSAPP ---
+            const sendButton = document.getElementById('send-whatsapp-btn');
+            
+            sendButton.addEventListener('click', function(event) {
+                event.preventDefault(); // Impede a ação padrão do link
+
+                const phoneNumber = '5524999566381';
+                const name = document.getElementById('form-name').value;
+                const email = document.getElementById('form-email').value;
+                const servico = document.getElementById('form-servico').value;
+                const message = document.getElementById('form-message').value;
+
+                const whatsappMessage = `Olá, Jessy! Gostaria de um orçamento.\n\n*Nome:* ${name}\n*E-mail:* ${email}\n*Serviço de Interesse:* ${servico}\n\n*Mensagem:*\n${message}`;
+                
+                const encodedMessage = encodeURIComponent(whatsappMessage);
+                const url = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+                window.location.href = url;
+            });
+        });
+    </script>
+</body>
+</html>
